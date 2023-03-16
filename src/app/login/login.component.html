@@ -3,12 +3,15 @@
         <p>{{translateService.translate('LOGINFOR')}}</p>
   </div>
 
-  
+  <!--<div class="g-signin2" (data-onsuccess)="authService.googleSignin"></div>-->
+
   <div class="spaceAroundDiv">
     <a class="ripple1 btn-color1 btn-small" (click)="authService.googleSignin()">
       <i class="material-icons left">person</i>
       {{translateService.translate('LOGINGOO')}}
     </a>  
   </div>
+
 </div>
+
   

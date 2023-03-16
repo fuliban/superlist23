@@ -14,7 +14,7 @@
     </div>
 </ng-template>
 
-  <div *ngIf="bLoading then loading"></div>
+<div *ngIf="bLoading then loading"></div>
   <div *ngIf="!bLoading">
     <div *ngIf="currentUser; then authenticated else guest">
           
@@ -26,8 +26,7 @@
   
 <!-- User NOT logged in -->
 
-<ng-template #guest>
-  <div>guest</div>
+<ng-template #guest>  
   <app-login></app-login>
 </ng-template>
 

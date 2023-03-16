@@ -26,14 +26,14 @@ export class AuthService {
   // Create a new Observable that will deliver the above sequence
   sequence = new Observable(this.sequenceSubscriber);
 */
-  suscriptor(observer:Observer<User>) { 
+  testsuscriptor(observer:Observer<User>) { 
     observer.next({uid: '33',email:'f@a.com'});   
     observer.next({uid: '32',email:'m@j.com'});   
     return {unsubscribe() {}};
   }
   
   //user$: Observable<User>=of(<User>{});    
-  user$:Observable<User>= new Observable(this.suscriptor);
+  user$:Observable<User>;
 
 
   firebaseApp = initializeApp (environment.firebaseConfig);
@@ -46,6 +46,7 @@ export class AuthService {
     private router: Router
   ) {
     console.log('prod:' + environment.production)
+    //this.user$= new Observable(this.testsuscriptor);
     
     this.user$=new Observable<User>((observer)=>{               
       onAuthStateChanged(this.auth, (user) => {      
@@ -56,11 +57,13 @@ export class AuthService {
           observer.next(this.firebaseUserConverter.fromFireBase(user));
           
         } else {
+          observer.next(<User>{});
         }
       });
       
       return {unsubscribe(){}}
     })
+    
 /*
     onAuthStateChanged(this.auth, (user) => {      
       if (user) {        
@@ -80,6 +83,14 @@ export class AuthService {
    }
 
    async googleSignin() {
+/*
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+*/    
+
     console.log('googleSignin');
     signInWithPopup(this.auth,this.provider).then((result)=>{
       const credential = GoogleAuthProvider.credentialFromResult(result);     
@@ -93,10 +104,18 @@ export class AuthService {
       const email = error.customData.email;    
       const credential = GoogleAuthProvider.credentialFromError(error);
     });
+    
     }
     
     async signOut() {
-      //todo await this.afAuth.signOut();
+      console.log('sout');
+      await this.auth.signOut();
+      /*
+      var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });*/
+      
       return this.router.navigate(['/']);
     }   
     

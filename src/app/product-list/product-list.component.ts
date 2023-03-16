@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   	sections: Section[]=[];	
 	
 	expandedSection:Section=<Section>{};
-	currentUser:User=<User>{};
+	currentUser:User|null=null;
 	bLoading:boolean;
 	bLoadDatabase:boolean=false;
 
@@ -40,21 +40,26 @@ export class ProductListComponent implements OnInit {
 		const observer:Observer<User> = {
 			next: (user: User) => { 
 				this.bLoading=false;
-				this.currentUser=user;
-				this.productService.getUserSections(user).subscribe(
-					(data:Section[])=> {						
-						if (data.length==0) {
-							console.log(`load sections `+this.currentUser.displayName);
-							//todo this.productService.loadDatabaseSections(this.currentUser);
-							console.log(`load products `+this.currentUser.displayName);
-							//todo this.productService.loadDatabaseProducts(this.currentUser);
+				if (user.email!==undefined) {
+					this.currentUser=user;				
+					
+					this.productService.getUserSections(user).subscribe(
+						(data:Section[])=> {						
+							if (data.length==0) {
+								//console.log(`load sections `+ (this.currentUser.displayName));
+								//todo this.productService.loadDatabaseSections(this.currentUser);
+								//console.log(`load products `+this.currentUser.displayName);
+								//todo this.productService.loadDatabaseProducts(this.currentUser);
+							}
+							else {
+								this.sections = data;	
+								if (this.currentUser) {
+									this.productService.numberOfProductsToBuy(this.currentUser).subscribe(total=>{this.numberOfProducts=total})
+								}						
+							}
 						}
-						else {
-							this.sections = data;							
-							this.productService.numberOfProductsToBuy(this.currentUser).subscribe(total=>{this.numberOfProducts=total})
-						}
-					}
-				)
+					)	
+				}
 			 },
 			error:this.onError,
 			complete: function (): void {console.log('ngOnInit completed')}
