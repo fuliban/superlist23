@@ -1,0 +1,25 @@
+.inList {    
+    color:var(--color2);
+}
+
+.inList a {    
+    color:var(--color2);
+}
+
+.inList a:visited {    
+    color:var(--color2);
+}
+
+.btn-small {
+    height: 24px;
+    line-height: 24px;
+    font-size: 13px;
+}
+
+.menuRow {
+    height: 30px;
+}
+
+i {
+    vertical-align: middle;
+}

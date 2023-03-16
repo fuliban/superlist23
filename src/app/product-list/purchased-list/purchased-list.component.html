@@ -1,0 +1,21 @@
+<div>
+    <div *ngIf="purchasedProducts && purchasedProducts.length>0">        
+        <h5>{{translateService.translate('RECENPURC')}}</h5>    
+    </div>
+
+    <div  *ngFor="let product of productsSortedByLastBuy(purchasedProducts)" class="row">
+        <div class="col s1 l1">
+            <label>
+            <input type="checkbox" class="fgColor1" [ngModel]="isPurchased(product)" (change)="onBuy(product,$event)" />
+            <span> </span>
+            </label>  
+        </div>
+        <div class="col s7 l2">
+            <a class="completed" routerLink="/product/{{product.code}}">{{product.desc}}</a>
+        </div>
+        <div class="col s4 l2">
+            {{product.lastBuy | timeago}}
+        </div>            
+    </div>
+
+</div>

@@ -1,0 +1,70 @@
+<ng-template #loading>
+    <div class="center | loading">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>  
+    </div>
+</ng-template>
+
+  <div *ngIf="bLoading then loading"></div>
+  <div *ngIf="!bLoading">
+    <div *ngIf="currentUser; then authenticated else guest">
+          
+      <!-- template will replace this div -->
+
+    </div>  
+</div>
+
+  
+<!-- User NOT logged in -->
+
+<ng-template #guest>
+  <div>guest</div>
+  <app-login></app-login>
+</ng-template>
+
+<!-- User logged in -->
+
+<ng-template #authenticated>
+    <nav>
+      <div class="btn-color2 nav-wrapper">    
+        <div class="spaceAroundDiv">
+          <ul id="nav-mobile" >           
+          <a class="ripple1 btn-color1 btn-small" (click)="onListMode()"><i class="material-icons left">format_list_bulleted</i>{{translateService.translate('LIST')}} {{(numberOfProducts && numberOfProducts!=0)?'('+numberOfProducts+')':''}}</a>
+          <a class="ripple1 btn-color1 btn-small" (click)="onBuyMode()"><i class="material-icons left">shopping_cart</i>{{translateService.translate('BUY')}}</a>        		                   
+          </ul>
+        </div>
+      </div>
+    </nav>  
+
+    <div *ngIf="configUIService.bListViewMode then listMode else buyMode">
+  </div> 
+</ng-template>
+
+<ng-template #buyMode>
+  
+  <div *ngFor="let section of sections">           
+    <app-section-box  [section]=section></app-section-box>          
+  </div>  
+
+  <app-purchased-list></app-purchased-list>
+
+</ng-template>
+  
+<ng-template #listMode>    
+  <app-product-search></app-product-search>  
+
+  <div *ngFor="let section of sections">  
+    <app-section-list [section]=section [expandedSection]=expandedSection (expandSectionEvent)="onSectionExpanded($event)"></app-section-list>      
+  </div>     
+</ng-template>
+
+  

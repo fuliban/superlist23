@@ -1,0 +1,81 @@
+<div >
+
+	<div *ngIf="product" class="btn-color2 header">
+		{{product.desc | uppercase}}
+	</div>
+    
+	<div>
+		<div class="row centeredDiv">
+			<div class="col s2 l4 noPadding rightDiv" >	
+				<div class="imgBox">
+					<img *ngIf="imgProduct(product)!=''" class="imgProduct" src="{{imgProduct(product)}}">
+					<div *ngIf="imgProduct(product)==''" class="imgProduct altImage | centeredDiv verticalDiv">
+						<div *ngIf="product">{{product.code | slice:0:2}}</div>
+					</div>
+				</div>				
+			</div>	
+			<div class="col s10 l5">
+				<label>{{translateService.translate('DESCRIPTION')}}
+					<input *ngIf="product" [(ngModel)]="product.desc" (ngModelChange)="onDescChange($event)" placeholder={{product.desc}} />
+				</label>
+			</div>	
+			<div class="col l3 noPadding"></div>		
+		</div>
+		<div class="row centeredDiv">
+			<div class="col s2 l4 noPadding rightDiv">	
+				<div *ngIf="product" class="code">
+					{{product.code}}
+				</div>				
+			</div>
+			<div class="col s6 l2">
+				<label>{{translateService.translate('SECTION')}}
+					<input *ngIf="product" [(ngModel)]="product.section" placeholder={{product.section}} />
+				</label>				
+			</div>		
+		
+			<div class="row col s2 l1 noPadding">
+				<a #sectionSelector class='dropdown-trigger btn btn-color2' data-target='dropdown2'>+</a>
+				<ul id='dropdown2' class='dropdown-content'>			
+					<li *ngFor="let section of sections" (click)="setSection(section)">{{section}}</li>
+				</ul>
+			</div>
+			
+			<div class="col s2 l2 row noPadding">
+				<div class="centeredDiv">
+					<label>{{translateService.translate('FAVOURITE')}}</label>
+				</div>				
+				<div class="centeredDiv {{favColor(product)}}" (click)="onChangeFavourite(product)">							
+					<i *ngIf="product" class="small material-icons">{{product.favourite | changefavourite:product.favourite}}</i>
+				  </div>
+			</div>
+			<div class="col l3 noPadding"></div>
+		</div>
+
+		<div class="row centeredDiv">
+			<div class="col s2 l4 noPadding">	
+								
+			</div>	
+			<div class="col s10 l5">
+				<label>{{translateService.translate('IMAGEURL')}}
+					<input *ngIf="product" [(ngModel)]="product.urlImg" placeholder={{product.urlImg}} />
+				</label>
+			</div>
+			<div class="col l3 noPadding"></div>
+		</div>
+		
+		<div class="row centeredDiv">		
+			<div class="col s3 l4 noPadding"></div>			
+			<div class="col s4 l3 button">
+				<a class="ripple2 btn-color2 btn-small" (click)="save()">{{translateService.translate('SAVE')}}</a>
+			</div>
+			<div class="col s4 l2 button">
+				<a class="ripple2 btn-color2 btn-small" (click)="goBack()">{{translateService.translate('GOBACK')}}</a>
+			</div>
+			<div class="col s1 l3 noPadding"></div>
+		</div>
+
+	</div>          
+	
+</div>
+
+

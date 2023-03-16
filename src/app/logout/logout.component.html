@@ -1,0 +1,14 @@
+<div *ngIf="auth.user$ | async as user" class="verticalDiv | logoutBox">
+
+    <div>
+        <img class="imgRowBox" [src]="user.photoURL">
+    </div>
+
+    <div class="username">
+        {{ user.displayName }}
+    </div>
+
+    <div>
+        <a class="ripple1 btn-color1 btn-small" (click)="auth.signOut()">{{translateService.translate('LOGOUT')}}</a>
+    </div>
+</div>

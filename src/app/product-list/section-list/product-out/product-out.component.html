@@ -1,0 +1,69 @@
+<!-- PRODUCT -->
+<div class="row outRow listRow">										
+    <div class="col s1 l4 | sectionProduct" >   
+        
+    </div>
+    <div class="col s1 l1 | {{CSSisFav()}} outInnerRow sectionProduct | leftBorder | centeredDiv" (click)="onChangeFavourite()">
+        <i class="tiny material-icons" class="{{CSSisFavIcon()}}">{{favIcon()}}</i>
+    </div>
+    <div class="col s8 l2 | {{CSSisFav()}} | outInnerRow sectionProduct noPadding" (click)="onProductClick()" > 
+        <div class="italic bold">
+            {{product.desc}}
+        </div>
+    </div>
+    
+    <div class="col s1 l1 | {{CSSisFav()}} outInnerRow sectionProduct | rightBorder | rightDiv" >
+        <div class="{{CSSisFav()}}" (click)="onExpandProduct()">
+            <i class="tiny material-icons">{{expandProductIcon()}}</i>
+        </div>
+    </div>
+
+    <div class="col s1 l4 | sectionProduct" >   
+        
+    </div>
+</div>
+
+<!-- MENU -->
+<ng-container *ngIf="bExpanded">
+    <div class="row outRow listRow" (click)="onChangeFavourite()">
+        <div class="col s1 l4">
+        </div>        
+        <div class="col s2 l1 outInnerRow sectionProduct | leftBorder | rightDiv">
+            <div class="centeredDiv">							
+                <i class="tiny material-icons fgColor2">{{product.favourite | changefavourite:product.favourite}}</i>
+            </div>					    
+        </div>
+        <div class="col s7 l2 outInnerRow sectionProduct | menuText | fgColor2">
+            <div *ngIf="product.favourite">							
+                {{translateService.translate('MARKNOFAV')}}
+            </div>					
+            <div *ngIf="!product.favourite">							
+                {{translateService.translate('MARKFAV')}}
+            </div>					
+        </div>
+        <div class="col s1 l1 outInnerRow sectionProduct rightBorder" >
+        </div>
+        <div class="col s1 l4">
+        </div>
+    </div>
+    
+    <div class="row outRow listRow">
+        <div class="col s1 l4 ">                  
+        </div>             
+        <div class="col s2 l1 outInnerRow sectionProduct | rightDiv | leftBorder">
+            <div class="centeredDiv">
+                <a routerLink="/product/{{product.code}}"><i class="tiny material-icons">edit</i></a>
+            </div>                        
+        </div>
+        <div class="col s7 l2 outInnerRow sectionProduct | menuText">
+            <div>
+                <a routerLink="/product/{{product.code}}">{{translateService.translate('EDITPROD')}}</a>
+            </div>                        
+        </div>
+        <div class="col s1 l1 outInnerRow sectionProduct | rightBorder">                  
+        </div>        
+        <div class="col s1 l4 ">                  
+        </div>        
+
+    </div>                
+</ng-container>

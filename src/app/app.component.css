@@ -1,0 +1,17 @@
+header {
+    background: var(--color1);
+    color: white;
+    font-size: 24px;    
+    font-family: 'Kufam', cursive;
+    padding: 1px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+i {
+    vertical-align: middle;
+}
+
+.noMargin {
+	margin: 0px;
+}

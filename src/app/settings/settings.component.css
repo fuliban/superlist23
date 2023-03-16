@@ -1,0 +1,14 @@
+.optionBox {
+    min-width: 250px;
+    padding: 10px;
+    border-top: 1px solid #80808069;
+}
+
+.logout {
+    padding-top:25px;
+    padding-bottom: 25px;
+}
+
+.option {
+    margin:5px
+}

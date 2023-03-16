@@ -1,0 +1,24 @@
+
+<div *ngIf="section">
+	    
+	<div>
+		<div class="row centeredDiv">				
+			<div class="col s10">
+				<label>{{translateService.translate('DESCRIPTION')}}
+					<input [(ngModel)]="section.name" (ngModelChange)="onNameChange($event)" placeholder={{section.name}} />
+				</label>
+			</div>			
+		</div>
+		
+		<div class="spaceAroundDiv">
+			<div class="button">
+				<a class="ripple2 btn-color2 btn-small" (click)="save()">{{translateService.translate('SAVE')}}</a>
+			</div>
+			<div class="button">
+				<a class="ripple2 btn-color2 btn-small" (click)="goBack()">{{translateService.translate('GOBACK')}}</a>
+			</div>
+			
+		</div>
+
+	</div>          		
+</div>

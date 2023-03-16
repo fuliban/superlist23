@@ -1,0 +1,81 @@
+<div class="card horizontal sectionHeader row | btn-color2">       
+    <div class="col s1 l4 rightDiv" (click)="onSectionExpandFav()"><i class="tiny material-icons">add_shopping_cart</i></div>
+    <div class="col s9 l3 noPadding" (click)="onSectionExpandFav()">{{section.name}}</div>			
+    <div class="col s1 l1 | rightDiv"><i  class="tiny material-icons" (click)="onSectionExpandFav()">{{expandSectionIcon()}}</i></div> 
+    <div class="col s1 l4" ></div>
+</div>	
+
+<!-- PRODUCTS IN LIST -->
+
+<div *ngFor="let product of productsInList">    
+    <app-product-in [product]=product [expandedProduct]=expandedProduct (expandProductEvent)="onProductExpanded($event)"></app-product-in>
+</div>
+
+<div *ngIf="(!productsInList || productsInList.length===0) && bExpandedFav" class="row sectionRow listRow">
+    <div class="col s1 l4"></div>
+    <div class="col s11 l4 sectionProduct | menuText">{{translateService.translate('EMPADDCL')}}</div>
+    <div class="col l4" ></div>
+</div>
+
+<!-- TOP BAR -->
+
+<div  *ngIf="bExpandedFav" class="row listRow sectionProductMenu | topBar" (click)="onSectionExpandAll()" >
+    <div class="col s1 l4 | sectionProduct" (click)="onSectionExpandAll()"></div>
+    <div class="col s9 l3 | sectionProduct | switch | btn-color1 | leftBorder" (click)="onSectionExpandAll()">    
+        <label class="menuText fgAntiColor2">
+            {{translateService.translate('FAVOURITES')}}
+            <input type="checkbox" [ngModel]="bExpandedAll" (click)="onSectionExpandAll()">
+         
+            <span class="lever"></span>
+            {{translateService.translate('ALL')}}
+        </label>              
+    </div>
+    <div class="col s1 l1 | sectionProduct | btn-color1 | rightBorder | rightDiv" (click)="onSectionExpandFav()">
+        <i class="tiny material-icons">clear</i>
+    </div>    
+    <div class="col s1 l4 | sectionProduct">
+    </div>
+</div>
+
+<!-- FAVOURITES -->
+
+<div *ngIf="bExpandedFav">      
+  
+    <div *ngFor="let product of productsSortedByStatus(productsFavNotInList)">
+        <app-product-out [product]=product [expandedProduct]=expandedProduct (expandProductEvent)="onProductExpanded($event)"></app-product-out>        
+    </div>
+
+    <!-- NO FAVOURITES -->
+
+    <div *ngIf="productsFavNotInList.length==0 && !bExpandedAll" class="row noFavRow listRow">
+        <div class="col s1 l4 | sectionProduct">            
+        </div>
+        <div class="col s10 l4 | sectionProduct | menuText | leftBorder rightBorder" >    
+            ({{translateService.translate('NOFAV')}})
+        </div>
+        <div class="col s1 l4 | sectionProduct">            
+        </div>        
+    </div>
+</div>
+   
+<!-- ALL -->
+
+<div *ngFor="let product of productsSortedByStatus(productsNoFavNotInList)">
+    <div *ngIf="bExpandedAll">
+        <app-product-out [product]=product [expandedProduct]=expandedProduct (expandProductEvent)="onProductExpanded($event)"></app-product-out>
+    </div>
+</div>
+
+<!-- BLANK -->
+
+<div *ngIf="sectionExpanded()" class="row sectionRow listRow | italic | height60">
+    <div class="col s1 l4 | sectionProduct">            
+    </div>
+    <div class="col s10 l4 | sectionProduct | centeredDiv | topBorder" >    
+        <a class="ripple2 btn-color2 btn-small" (click)="onCreateProduct()">{{translateService.translate('NEWPRODUCT')}}</a>
+    </div>
+    <div class="col s1 l4 | sectionProduct">            
+    </div>     
+</div>   
+
+

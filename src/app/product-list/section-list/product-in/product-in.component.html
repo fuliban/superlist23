@@ -1,0 +1,97 @@
+<!-- PRODUCT -->
+<div>
+    <div class="row sectionRow listRow" (click)="onExpandProduct()">										
+        <div class="col s1 l4 inList sectionProduct | menuText | rightDiv | noPadding">   
+            {{(product.quantity==undefined || product.quantity >1)?product.quantity:''}}
+        </div>
+
+        <div class="col s9 l3 inList sectionProduct"> 
+            <div class="italic bold">
+                {{product.desc}}
+            </div>
+        </div>
+
+        <div class="col s1 l1 sectionProduct | rightDiv">
+            <div class="inList">
+                <i class="tiny material-icons">{{expandProductIcon()}}</i>
+            </div>
+        </div>
+        <div class="col s1 l4"></div>
+    </div>
+</div>
+
+<!-- MENU -->
+<div *ngIf="bExpanded">
+    <div class="row menuRow listRow sectionProductMenu">
+        <div class="col s2 l4">                  
+        </div>        
+        <div class="col s2 l1 sectionProduct">
+            <a class="ripple2 btn-color2 btn-small" (click)="decreaseQuantity()">-</a>                      
+        </div>
+        <div class="col s2 l1 fgColor2 sectionProduct | menuText">
+            {{product.quantity | quantity}} {{translateService.translate('UNITS')}}
+        </div>
+        <div class="col s2 l1 sectionProduct">
+            <a class="ripple2 btn-color2 btn-small" (click)="increaseQuantity()">+</a>                     
+        </div>
+        <div class="col s4 l4">                     
+        </div>
+    </div> 
+
+    <div class="row menuRow listRow sectionProductMenu">
+        <div class="col s2 l4">                  
+        </div>        
+        <div class="col s1 l1 sectionProduct | rightDiv">
+            <div>
+                <a routerLink="/product/{{product.code}}"><i class="tiny material-icons sectionProductEdit">edit</i></a>
+            </div>                        
+        </div>
+        <div class="col s9 l3 inList}} sectionProduct">
+            <div >
+                <a class="inList | menuText" routerLink="/product/{{product.code}}">{{translateService.translate('EDITPROD')}}</a>
+            </div>                        
+        </div>
+        <div class="col s4 l4">                     
+        </div>
+
+    </div> 
+
+    <div class="row menuRow listRow sectionProductMenu" (click)="onProductRemove(product)">
+        <div class="col s2 l4">                  
+        </div>
+        <div class="col s1 l1 inList sectionProduct | rightDiv">
+            <div>							
+                <i class="tiny material-icons sectionProductEdit">delete</i>
+            </div>						
+        </div>
+        <div class="col s9 l3 inList sectionProduct">
+            <div>							
+                <a href="javascript:void(0)" class="menuText">{{translateService.translate('REMOVLIST')}}</a>
+            </div>						
+        </div>
+        <div class="col s4 l4">                     
+        </div>
+
+    </div>
+
+    <div class="row menuRow listRow sectionProductMenu" (click)="onChangeFavourite(product)">
+        <div class="col s2 l4">                  
+        </div>
+        <div class="col s1 l1 inList sectionProduct | rightDiv">
+            <div>							
+                <i class="tiny material-icons sectionProductEdit">{{product.favourite | changefavourite:product.favourite}}</i>
+            </div>					
+        </div>
+        <div class="col s9 l3 inList | menuText | sectionProduct">
+            <div *ngIf="product.favourite">							
+                <a href="javascript:void(0)" class="menuText">{{translateService.translate('MARKNOFAV')}}</a>
+            </div>					
+            <div *ngIf="!product.favourite">							
+                <a href="javascript:void(0)" class="menuText">{{translateService.translate('MARKFAV')}}</a>
+            </div>					
+        </div>
+        <div class="col s4 l4">                     
+        </div>
+    </div>         
+</div>
+

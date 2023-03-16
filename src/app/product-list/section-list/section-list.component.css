@@ -1,0 +1,39 @@
+
+.notInList {
+    color:gray;    
+}
+
+.notInList a {
+    color:gray;    
+}
+
+.switch label input[type=checkbox]:checked + .lever {
+    background-color:var(--color2);
+}
+
+.topBar {
+    margin-bottom: 0px;
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 40px;
+}
+
+.noFavRow {
+    height: 40px;
+}
+
+.leftBorder {
+    border-left: 1px solid var(--color1);
+}
+.rightBorder {
+    border-right: 1px solid var(--color1);
+}
+
+.topBorder {
+    border-top: 1px solid var(--color1);
+}
+
+.height60 {
+    height: 60px;
+}

@@ -1,0 +1,22 @@
+<div class="row | topBox">
+    <div class="col s1 l3"></div>
+    <div class="col s5 l4">
+        <a class="ripple1 btn-color1 btn-small" (click)="onCreateSection()"><i class="material-icons left">playlist_add</i>{{translateService.translate('NEWSECTION')}}</a>        		          			
+    </div>    
+    <div class="col s5 l2">
+        <a class="ripple1 btn-color1 btn-small" (click)="save()"><i class="material-icons left">save</i>{{translateService.translate('SAVE')}}</a>        		          			
+    </div>    
+    <div class="col s1 l3"></div>
+</div>
+
+<div *ngFor="let section of sections">
+    <div class="card horizontal sectionHeader row | fgColor2">
+        <div class="col l3"></div>			
+        <div class="col s7 l3">{{section.name}}</div>			
+        <div  class="col s1 l1"><i  routerLink="/section/{{section.name}}" class="tiny material-icons">edit</i></div> 
+        <div  class="col s1 l1"><i  class="tiny material-icons" (click)="onOrderUp(section)">arrow_upward</i></div> 
+        <div  class="col s1 l1"><i  class="tiny material-icons" (click)="onOrderDown(section)">arrow_downward</i></div> 
+        <div class="col l3"></div>			
+    </div>					        
+</div>  
+

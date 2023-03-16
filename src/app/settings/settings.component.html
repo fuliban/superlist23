@@ -1,0 +1,26 @@
+<div class="verticalDiv">    
+    <div class="logout">
+      <app-logout></app-logout>
+    </div>
+    
+    <div class="spaceAroundDiv | optionBox">
+      <div>
+        {{translateService.translate('LANGUA')}}
+      </div>
+      <div>  
+        <a class="ripple1 btn-color1 btn-small" (click)="onChangeLanguage()">{{language()}}</a>                                                
+      </div>        
+    </div>
+  
+    <div class="verticalDiv | optionBox">
+      <div class="option">  
+        <a class="ripple1 btn-color1 btn-small" (click)="onAdminSections()"><i class="material-icons left">format_list_numbered</i>{{translateService.translate('adminsec')}}</a>     
+      </div>
+    </div>
+    
+    <div class="verticalDiv | optionBox">
+      <div class="option">  
+        <a class="ripple1 btn-color1 btn-small" (click)="onGoHome()"><i class="material-icons left">home</i>{{translateService.translate('HOME')}}</a>     
+      </div>
+    </div>
+  </div>

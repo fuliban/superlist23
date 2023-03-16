@@ -1,0 +1,31 @@
+<div class="productBox card horizontal" (click)="onProductClick(product)">
+    <div class="flexGrow1">
+        <div>
+            <div class="row imgRowBox">
+                <div class="col s5 | noPadding imgProductBox">						
+                    <img *ngIf="imgProduct(product)!=''" class="imgProduct" src="{{imgProduct(product)}}">
+                    <div *ngIf="imgProduct(product)==''" class="imgProduct altImage centeredDiv">
+                        <div>{{product.code | slice:0:2}}</div>
+                    </div>
+                </div>
+                <div class="noPadding col s7" >                                                                          
+                    <div class="row">
+                        <div class ="textRowBox col s12">                    
+                            <div>
+                                <p >{{product.desc | twolinesdesc:product.desc}}</p>
+                            </div>                                                       
+                        </div>   
+                    </div>
+                    
+
+                    <div class="row subTextRowBox fgEspColor1">                
+                          <div >
+                            {{(product.quantity || 0 )>1?product.quantity + ' ' + translateService.translate('UNITS'):''}}
+                          </div>                                
+                    </div> 
+
+                </div>
+            </div>
+        </div>            
+    </div>                
+</div>

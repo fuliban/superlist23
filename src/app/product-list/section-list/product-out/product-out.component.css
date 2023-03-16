@@ -1,0 +1,45 @@
+.isFav {
+    color:var(--antiColor2);   
+    background-color: var(--color2); 
+}
+
+.isFav a {
+    color:var(--antiColor2);   
+    background-color: var(--color2); 
+}
+
+.notIsFav {
+    color: var(--color2);  
+    background-color: var(--color4);
+}
+
+.notIsFav a {
+   color: var(--color2); 
+}
+
+.isFavIcon {
+    color: var(--color1);
+}
+
+.notIsFavIcon {
+    opacity: 0.4;
+}
+
+.outRow {
+    height: 40px;
+}
+
+.outInnerRow {
+    border-top: 1px;
+    border-top-color:var(--color3);
+    border-top-style: solid;
+    border-collapse: collapse;
+    border-spacing: 0;    
+}
+
+.leftBorder {
+    border-left: 1px solid var(--color1);
+}
+.rightBorder {
+    border-right: 1px solid var(--color1);
+}

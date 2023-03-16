@@ -1,0 +1,33 @@
+.checkRowBox {
+    height:25px;
+    width: 25px;
+    float: right;
+    margin-right: 5px;
+}
+
+.loading {
+    padding-top:120px;
+}
+
+table {
+    margin-top: 6px;
+}
+
+.noMarginLeft {
+    margin-left: 0px;
+}
+
+
+.spaceAroundDiv {
+	display: flex;
+	justify-content: space-around;	
+}
+
+
+.margin8 {
+	margin: 8px;
+}
+
+.completed {
+	text-decoration: line-through;
+}

@@ -1,0 +1,82 @@
+
+.row .col{
+    padding:0;
+}
+
+.col .row{
+    margin-left:0px;
+    margin-right: 0px;
+}
+
+.flexGrow1{
+    flex-grow: 1;
+}
+
+.productBox
+{    
+    box-sizing: border-box;
+    width: 150px;
+    height: 56px;
+    float: left;  
+    margin: 5px;
+    padding: 4px;
+    font-size: 18px; 
+	background: var(--color1);
+	color:white;
+}
+
+.imgRowBox
+{
+    height: 50px;
+    margin: 0px;
+}
+
+.imgRowBox col{
+    padding: 1px;
+}
+
+.imgRowBox row{
+    padding: 1px;    
+}
+
+.imgProductBox{
+    height: 100%;
+}
+
+.imgProduct{
+    width: 100%;
+    height: 100%;
+    max-width: 48px;
+	max-height: 48px;
+}
+
+.altImage {
+	background: white;    
+    color: var(--color1);
+    font-size: 28px;        
+    padding: 3px;
+    font-family: 'Kufam';
+	align-content: center;
+}
+
+.textRowBox
+{
+    height: 34px;
+    font-size: 12px;
+    font-family: 'Kufam', cursive;
+    margin: 0px;
+    line-height: 1.2;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    text-transform: uppercase;    
+}
+
+.subTextRowBox
+{
+    height: 16px;
+    font-size: 10px;
+    margin: 0px;
+    font-family: 'Arial';
+}
+

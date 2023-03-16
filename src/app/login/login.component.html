@@ -1,0 +1,14 @@
+<div class="nav-wrapper">    
+  <div class="spaceAroundDiv">
+        <p>{{translateService.translate('LOGINFOR')}}</p>
+  </div>
+
+  
+  <div class="spaceAroundDiv">
+    <a class="ripple1 btn-color1 btn-small" (click)="authService.googleSignin()">
+      <i class="material-icons left">person</i>
+      {{translateService.translate('LOGINGOO')}}
+    </a>  
+  </div>
+</div>
+  

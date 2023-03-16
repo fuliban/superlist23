@@ -1,0 +1,9 @@
+<div *ngIf="numberOfVisibleProducts()>0">
+    <h5>{{section.name}}</h5>  
+</div>
+
+<div class="sectionBox">    
+<ng-container *ngFor="let product of (productsSortedByStatus(products) | visibleproducts:'')">
+    <app-product-box [product]=product></app-product-box>
+  </ng-container>               
+</div>
