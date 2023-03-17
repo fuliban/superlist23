@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { from, Observable,Observer,of } from 'rxjs';
 import { User } from '../models/user.model';
 
-import {initializeApp} from 'firebase/app';
+import {FirebaseError, initializeApp} from 'firebase/app';
 import {getFirestore,doc, DocumentData, DocumentReference} from 'firebase/firestore';
 
 import { getAuth,signInWithPopup, GoogleAuthProvider, onAuthStateChanged, User as FirebaseUser, NextOrObserver, NextFn } from 'firebase/auth';
@@ -26,11 +26,7 @@ export class AuthService {
   // Create a new Observable that will deliver the above sequence
   sequence = new Observable(this.sequenceSubscriber);
 */
-  testsuscriptor(observer:Observer<User>) { 
-    observer.next({uid: '33',email:'f@a.com'});   
-    observer.next({uid: '32',email:'m@j.com'});   
-    return {unsubscribe() {}};
-  }
+ 
   
   //user$: Observable<User>=of(<User>{});    
   user$:Observable<User>;
@@ -45,8 +41,7 @@ export class AuthService {
   constructor(
     private router: Router
   ) {
-    console.log('prod:' + environment.production)
-    //this.user$= new Observable(this.testsuscriptor);
+    console.log('prod:' + environment.production)    
     
     this.user$=new Observable<User>((observer)=>{               
       onAuthStateChanged(this.auth, (user) => {      
@@ -83,45 +78,39 @@ export class AuthService {
    }
 
    async googleSignin() {
-/*
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-*/    
+   
 
     console.log('googleSignin');
-    signInWithPopup(this.auth,this.provider).then((result)=>{
-      const credential = GoogleAuthProvider.credentialFromResult(result);     
-      if (credential) {
-        const token = credential.accessToken;
-        const user = result.user;  
-      } 
-    }).catch((error)=> {
-      const errorCode = error.code;
-      const errorMessage = error.message;    
-      const email = error.customData.email;    
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    });
-    
+      signInWithPopup(this.auth,this.provider).then((result)=>{
+        const credential = GoogleAuthProvider.credentialFromResult(result);     
+        if (credential) {
+          const token = credential.accessToken;
+          const user = result.user;  
+        } 
+      }).catch((error)=> {
+        const errorCode = error.code;
+        const errorMessage = error.message;    
+        const email = error.customData.email;    
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+      
     }
     
     async signOut() {
       console.log('sout');
       await this.auth.signOut();
-      /*
-      var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });*/
       
       return this.router.navigate(['/']);
     }   
     
     firebaseUserConverter= {
       fromFireBase: (firebaseUser:FirebaseUser): User => {
-        return <User> {email:firebaseUser.email,uid:firebaseUser.uid} ;
+        return <User> {
+          email:firebaseUser.email,
+          uid:firebaseUser.uid,
+          photoURL:firebaseUser.photoURL,
+          displayName:firebaseUser.displayName
+        } ;
       }
     }
 

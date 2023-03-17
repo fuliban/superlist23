@@ -64,8 +64,8 @@ export class ProductListComponent implements OnInit {
 			error:this.onError,
 			complete: function (): void {console.log('ngOnInit completed')}
 		};
-		this.authService.user$.subscribe(observer);
-			  
+
+		this.authService.user$.subscribe(observer);			  
 	}
 
 	onError(error:any):void {

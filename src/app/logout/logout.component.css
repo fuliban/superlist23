@@ -6,7 +6,8 @@
 .username {
     color: var(--color1);    
     font-weight: bold;
-    font-style: italic;
+    font-style: normal;
+    text-transform: uppercase;
     padding-bottom: 15px;
     padding-top: 6px;
 }
